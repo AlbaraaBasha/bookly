@@ -1,5 +1,5 @@
-import 'package:bookly/core/utils/constans.dart';
-import 'package:bookly/features/Home/presentation/views/widgets/costum_appBar.dart';
+import 'package:bookly/features/Home/presentation/views/widgets/costum_app_bar.dart';
+import 'package:bookly/features/Home/presentation/views/widgets/costum_list_book_view.dart';
 import 'package:flutter/material.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -7,6 +7,6 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(children: [CostumAppBar()]);
+    return const Column(children: [CostumAppBar(), CostumListBookView()]);
   }
 }
