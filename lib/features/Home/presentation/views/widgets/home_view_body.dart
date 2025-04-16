@@ -29,7 +29,7 @@ class HomeViewBody extends StatelessWidget {
           ),
         ),
         //Couldn't use ListView.builder because of the scroll issues
-        //   SliverFillRemaining(child: CostumBestSellerListView()),
+        //   SliverFillRemaining(child: CustomBestSellerListView()),
         SliverList(
           delegate: SliverChildBuilderDelegate(
             (context, index) => Padding(
@@ -38,7 +38,7 @@ class HomeViewBody extends StatelessWidget {
                 onTap: () {
                   Get.to(() => const BookDetailsView());
                 },
-                child: const CustomBestSellerBookItem(),
+                child: const CustomBookItem(),
               ),
             ),
           ),
