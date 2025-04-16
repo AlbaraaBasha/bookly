@@ -1,8 +1,8 @@
-import 'package:bookly/features/Home/presentation/views/widgets/costum_list_view_item.dart';
+import 'package:bookly/features/Home/presentation/views/widgets/custom_list_view_item.dart';
 import 'package:flutter/material.dart';
 
-class CostumListBookView extends StatelessWidget {
-  const CostumListBookView({super.key});
+class CustomListBookView extends StatelessWidget {
+  const CustomListBookView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class CostumListBookView extends StatelessWidget {
         itemBuilder: (context, index) {
           return const Padding(
             padding: EdgeInsets.all(8),
-            child: CostumListViewItem(),
+            child: CustomListViewItem(),
           );
         },
       ),

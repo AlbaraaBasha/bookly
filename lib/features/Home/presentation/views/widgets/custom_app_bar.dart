@@ -1,8 +1,8 @@
 import 'package:bookly/core/utils/constans.dart';
 import 'package:flutter/material.dart';
 
-class CostumAppBar extends StatelessWidget {
-  const CostumAppBar({super.key});
+class CustomAppBar extends StatelessWidget {
+  const CustomAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {

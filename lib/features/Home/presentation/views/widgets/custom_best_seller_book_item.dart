@@ -1,8 +1,8 @@
 import 'package:bookly/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 
-class CostumBestSellerBookItem extends StatelessWidget {
-  const CostumBestSellerBookItem({super.key});
+class CustomBestSellerBookItem extends StatelessWidget {
+  const CustomBestSellerBookItem({super.key});
 
   @override
   Widget build(BuildContext context) {
