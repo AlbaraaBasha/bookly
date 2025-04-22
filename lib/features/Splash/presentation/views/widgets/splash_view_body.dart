@@ -1,32 +1,38 @@
-import 'package:bookly/core/utils/constans.dart';
-import 'package:bookly/features/Home/presentation/views/home_view.dart';
+import 'package:bookly/Features/home/presentation/views/home_view.dart';
+import 'package:bookly/constants.dart';
+import 'package:bookly/core/utils/app_router.dart';
+import 'package:bookly/core/utils/assets.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
-class SplashViewBody extends StatefulWidget {
-  const SplashViewBody({super.key});
+import 'sliding_text.dart';
+
+class SplashViewbody extends StatefulWidget {
+  const SplashViewbody({Key? key}) : super(key: key);
 
   @override
-  State<SplashViewBody> createState() => _SplashViewBodyState();
+  State<SplashViewbody> createState() => _SplashViewbodyState();
 }
 
-class _SplashViewBodyState extends State<SplashViewBody>
+class _SplashViewbodyState extends State<SplashViewbody>
     with SingleTickerProviderStateMixin {
   late AnimationController animationController;
   late Animation<Offset> slidingAnimation;
-  late Animation<double> fadeAnimation;
 
   @override
   void initState() {
     super.initState();
-    splashAnimations();
+    initSlidingAnimation();
+
     navigateToHome();
   }
 
   @override
   void dispose() {
-    animationController.dispose();
     super.dispose();
+
+    animationController.dispose();
   }
 
   @override
@@ -35,51 +41,39 @@ class _SplashViewBodyState extends State<SplashViewBody>
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        FadeTransition(opacity: fadeAnimation, child: Image.asset(kLogo)),
-        const SizedBox(height: 20),
-        AnimatedBuilder(
-          animation: slidingAnimation,
-          builder: (context, child) {
-            return SlideTransition(
-              position: slidingAnimation,
-              child: const Text(
-                'Free Books For Everyone',
-                textAlign: TextAlign.center,
-              ),
-            );
-          },
+        Image.asset(AssetsData.logo),
+        const SizedBox(
+          height: 4,
         ),
+        SlidingText(slidingAnimation: slidingAnimation),
       ],
     );
   }
 
-  void splashAnimations() {
+  void initSlidingAnimation() {
     animationController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1500),
+      duration: const Duration(seconds: 1),
     );
 
-    fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: animationController, curve: Curves.easeIn),
-    );
-
-    slidingAnimation = Tween<Offset>(
-      begin: const Offset(0, 5),
-      end: Offset.zero,
-    ).animate(
-      CurvedAnimation(parent: animationController, curve: Curves.easeOut),
-    );
+    slidingAnimation =
+        Tween<Offset>(begin: const Offset(0, 2), end: Offset.zero)
+            .animate(animationController);
 
     animationController.forward();
   }
 
   void navigateToHome() {
-    Future.delayed(const Duration(milliseconds: 2500), () {
-      Get.to(
-        () => const HomeView(),
-        transition: Transition.fadeIn,
-        duration: const Duration(milliseconds: 500),
-      );
-    });
+    Future.delayed(
+      const Duration(seconds: 2),
+      () {
+        // Get.to(() => const HomeView(),
+        //     // calculations
+        //     transition: Transition.fade,
+        //     duration: kTranstionDuration);
+
+        GoRouter.of(context).push(AppRouter.kHomeView);
+      },
+    );
   }
 }

@@ -1,16 +1,17 @@
-import 'package:bookly/core/utils/styles.dart';
-import 'package:bookly/features/Home/presentation/views/widgets/books_button_action.dart';
-import 'package:bookly/features/Home/presentation/views/widgets/custom_book_item.dart';
-import 'package:bookly/features/Home/presentation/views/widgets/custom_details_app_bar.dart';
-import 'package:bookly/features/Home/presentation/views/widgets/custom_list_book_view.dart';
+import 'package:bookly/Features/home/data/models/book_model/book_model.dart'
+    show BookModel;
+import 'package:bookly/Features/home/presentation/views/widgets/similar_books_section.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'books_details_sectioni.dart';
+import 'custom_book_details_app_bar.dart';
 
 class BookDetailsViewBody extends StatelessWidget {
-  const BookDetailsViewBody({super.key});
+  const BookDetailsViewBody({super.key, required this.bookModel});
 
+  final BookModel bookModel;
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
     return CustomScrollView(
       slivers: [
         SliverFillRemaining(
@@ -20,43 +21,10 @@ class BookDetailsViewBody extends StatelessWidget {
             child: Column(
               children: [
                 const CustomBookDetailsAppBar(),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: width * 0.21,
-                    vertical: 20,
-                  ),
-                  child: const CustomBookItem(),
-                ),
-                const Text('The Book Title', style: Styles.textStyle30),
-                Text(
-                  'Albaraa Basha',
-                  style: Styles.textStyle18.copyWith(color: Colors.grey),
-                ),
-                const SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(Icons.star, color: Colors.amber),
-                    const SizedBox(width: 5),
-                    Text(
-                      '4.8',
-                      style: Styles.textStyle14.copyWith(color: Colors.grey),
-                    ),
-                    const SizedBox(width: 5),
-                    Text(
-                      '(200)',
-                      style: Styles.textStyle14.copyWith(color: Colors.grey),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 20),
-                const BooksButtonAction(),
+                BookDetailsSection(book: bookModel),
                 const Expanded(child: SizedBox(height: 50)),
-                const Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text('You can also like', style: Styles.textStyle16),
-                ),
-                const SizedBox(height: 180, child: CustomListBookView()),
+                const SimilarBooksSection(),
+                const SizedBox(height: 40),
               ],
             ),
           ),

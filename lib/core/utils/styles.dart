@@ -1,5 +1,5 @@
-import 'package:bookly/core/utils/constans.dart';
-import 'package:flutter/material.dart';
+import 'package:bookly/constants.dart';
+import 'package:flutter/cupertino.dart';
 
 abstract class Styles {
   static const textStyle18 = TextStyle(
@@ -26,3 +26,5 @@ abstract class Styles {
     fontWeight: FontWeight.w500,
   );
 }
+
+const TextStyle textStyle = TextStyle();
